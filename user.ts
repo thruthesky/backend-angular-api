@@ -134,7 +134,7 @@ export class User {
 
         this.base.post( req,
             (res) => {
-                this.setSessionId( res );
+                this.deleteSessionId( );
                 success( res );
             },
             failure,
