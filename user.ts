@@ -60,7 +60,7 @@ export class User {
         
         this.base.post( req,
             (res) => {
-                this.setSessionId( res );
+                this.deleteSessionId( );
                 success( res );
             },
             failure,
@@ -134,7 +134,7 @@ export class User {
 
         this.base.post( req,
             (res) => {
-                this.deleteSessionId( );
+                this.setSessionId( res );
                 success( res );
             },
             failure,
