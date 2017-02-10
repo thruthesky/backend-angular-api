@@ -72,7 +72,7 @@ responseData( re, successCallback: ( data: any ) => void, errorCallback: ( error
    * @warning the error message "No Internet!" NOT only means for 'no internet' but also for 'no connection' to server maybe because of slow internet or wrong domain or server script error etc.
    */
   responseConnectionError( error: Response | any, errorCallback: ( error : string ) => void ) {
-    // console.error(Response);
+    console.error('base::responseConnectionError() : ', Response);
     if ( errorCallback ) errorCallback( NO_INTERNET );
   }
 
