@@ -25,8 +25,8 @@ export class Base {
    * @example code @see member.login()
    *
    */
-  post( data: any, successCallback: (data:any) => void, errorCallback?: ( e:any ) => void, completeCallback?: () => void ) {
-    if ( data['mc'] === void 0 ) return errorCallback("Ajax request 'action' value is empty");
+  post( data: any, successCallback: (data:any) => void, failureCallback?: ( e:any ) => void, completeCallback?: () => void ) {
+    if ( data['mc'] === void 0 ) return failureCallback("Http::post() request 'mc' value is empty");
     data = this.buildQuery( data );
 
     let url = URL_BACKEND_API + '?' + data; console.info("post: ", url); // debug in console
@@ -34,12 +34,12 @@ export class Base {
     this.http.post( URL_BACKEND_API, data, this.requestOptions )
       .timeout( BACKEND_API_CONNECTION_TIMEOUT, new Error('timeout exceeded') )
       .subscribe(
-        re => this.responseData( re, successCallback, errorCallback ),
-        er => this.responseConnectionError( er, errorCallback ),
+        re => this.responseData( re, successCallback, failureCallback ),
+        er => this.responseConnectionError( er, failureCallback ),
         completeCallback );
   }
 
-responseData( re, successCallback: ( data: any ) => void, errorCallback: ( error: string ) => void ) : any {
+responseData( re, successCallback: ( data: any ) => void, failureCallback: ( error: string ) => void ) : any {
     // console.log('Api::responseData() re: ', re);
     let data;
     try {
@@ -47,13 +47,16 @@ responseData( re, successCallback: ( data: any ) => void, errorCallback: ( error
     }
     catch( e ) {
       //console.error(e);
-      //console.info(re);
-      if ( errorCallback ) return errorCallback( ERROR_JSON_PARSE );
+      console.info(re['_body']);
+      if ( failureCallback ) failureCallback( ERROR_JSON_PARSE );
+      return;
     }
     if ( this.isRequestError(data) ) {
-      if ( errorCallback ) return errorCallback( data.message )
+      if ( failureCallback ) failureCallback( data.message );
+      return;
     }
-    else successCallback( data );
+    
+    if ( successCallback ) successCallback( data );
   }
 
   isRequestError( data ) {
