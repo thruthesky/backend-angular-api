@@ -126,8 +126,19 @@ export class User {
             complete );
 
     }
-    
 
 
+    update( req: USER_REGISTER_REQUEST_DATA, success: ( res: USER_REGISTER_RESPONSE_DATA) => void, failure: ( error: string ) => void, complete: () => void ) {
+        req.mc = 'user.update';
+        req.session_id = this.getSessionId();
 
+        this.base.post( req,
+            (res) => {
+                this.setSessionId( res );
+                success( res );
+            },
+            failure,
+            complete );
+
+    }
 }
