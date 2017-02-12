@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user';
-import { USER_REGISTER_REQUEST_DATA, USER_LOGIN_REQUEST_DATA } from '../interface';
+import {USER_REGISTER_REQUEST_DATA, USER_LOGIN_REQUEST_DATA, USER_FIELDS, USER_UPDATE_REQUEST_DATA} from '../interface';
 
 const NEW_USER_DATA = 'new-update';
 @Injectable()
@@ -26,11 +26,9 @@ export class UserTest {
         return  ( new Date ).getMinutes() + ( new Date ).getSeconds() + '';
     }
 
-    randomData() : USER_REGISTER_REQUEST_DATA {
+    randomData() : USER_FIELDS {
         let randomstring = this.randomString();
         let data : USER_REGISTER_REQUEST_DATA  = {};
-        data.id = randomstring;
-        data.password = randomstring;
         data.name = randomstring + 'name';
         data.nickname = randomstring + 'nickname';
         data.mobile = '09123456789';
@@ -40,7 +38,9 @@ export class UserTest {
     }
 
     register() {
-        let userdata = this.randomData();
+        let userdata: USER_REGISTER_REQUEST_DATA = this.randomData();
+        userdata.id = this.randomString();
+        userdata.password = this.randomString();
         this.user.register( userdata, res =>{
             console.info( ' res UserTest :: REGISTER:: ' + res );
         }, err =>{}, ()=>{})
@@ -65,7 +65,7 @@ export class UserTest {
     }
 
     update() {
-        let data = this.randomData();
+        let data : USER_UPDATE_REQUEST_DATA = this.randomData();
         data.name = this.randomString() + NEW_USER_DATA;
         this.user.update( data , res =>{
 
