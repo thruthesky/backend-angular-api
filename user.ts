@@ -92,6 +92,7 @@ export class User {
 
 
     getUserData( req: USER_REQUEST_DATA, success: ( res: USER_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
+        if( this.isLogin() == false) return alert( ' not logged in ' );
         req.mc = 'user.data';
         req.session_id = this.getSessionId();
 
