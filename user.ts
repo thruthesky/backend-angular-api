@@ -8,7 +8,9 @@ import {
         USER_REQUEST_DATA,
         USER_RESPONSE_DATA,
         USER_UPDATE_REQUEST_DATA,
-        USER_UPDATE_RESPONSE_DATA
+        USER_UPDATE_RESPONSE_DATA,
+        USER_META_REQUEST_DATA,
+        USER_META_RESPONSE_DATA
     } from './interface';
 import { KEY_SESSION_ID } from './defines';
 @Injectable()
@@ -94,6 +96,17 @@ export class User {
     getUserData( req: USER_REQUEST_DATA, success: ( res: USER_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
         if( this.isLogin() == false) return alert( ' not logged in ' );
         req.mc = 'user.data';
+        req.session_id = this.getSessionId();
+
+        this.base.post( req,
+            (res) => {
+                success( res );
+            },
+            failure,
+            complete );
+    }
+    getUserMetaData( req: USER_META_REQUEST_DATA, success:( res: USER_META_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
+        req.mc = 'user.meta.gets';
         req.session_id = this.getSessionId();
 
         this.base.post( req,
