@@ -69,12 +69,12 @@ export class UserTest {
             if( this.user.isLogin() == false) {
                 console.info('USER LOGOUT TEST: SUCCESS');
                 success();
-                complete();
+                if ( complete ) complete();
             }
             else {
                 console.error('USER LOGOUT TEST: FAILED');
                 failure();
-                complete();
+                if ( complete ) complete();
             }
 
         }, error => console.error('USER LOGOUT TEST: ERROR: ' + error ) );
@@ -90,7 +90,7 @@ export class UserTest {
                 callback();
             }
             else console.error('USER LOGIN TEST: FAILED');
-        }, error => console.error('USER LOGIN TEST: ERROR'));
+        }, error => console.error('USER LOGIN TEST: ERROR', error));
     }
 
     update( callback ) {
