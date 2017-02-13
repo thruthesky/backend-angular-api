@@ -65,8 +65,6 @@ export class User {
             },
             failure,
             complete );
-
-
     }
 
 
@@ -141,4 +139,20 @@ export class User {
             complete );
 
     }
+// added by gem... get information of current user.
+     getUserData( req: USER_REGISTER_REQUEST_DATA, success: ( res: USER_REGISTER_RESPONSE_DATA) => void, failure: ( error: string ) => void, complete: () => void ) {
+        req.mc = 'user.data';
+        req.session_id = this.getSessionId();
+
+        this.base.post( req,
+            (res) => {
+                this.setSessionId( res );
+                success( res );
+            },
+            failure,
+            complete );
+
+    }
+
+
 }
