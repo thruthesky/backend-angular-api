@@ -48,6 +48,10 @@ export interface USER_DATA extends ID_PASSWORD, USER_FIELDS {
 
 };
 
+export interface USER_REQUEST_DATA extends REQUEST {}
+
+export type USER_RESPONSE_DATA = USER_SESSION_ID_RESPONSE;
+
 export interface USER_LOGIN_REQUEST_DATA extends REQUEST, ID_PASSWORD { };
 export type USER_LOGIN_REPONSE_DATA = USER_SESSION_ID_RESPONSE;
 
@@ -63,5 +67,7 @@ export interface USER_UPDATE_REQUEST_DATA extends REQUEST, USER_FIELDS {
     meta?: any;
 };
 export type USER_UPDATE_RESPONSE_DATA = USER_SESSION_ID_RESPONSE;
+
+
 
 
