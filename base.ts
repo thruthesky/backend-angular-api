@@ -90,8 +90,8 @@ responseData( re, successCallback: ( data: any ) => void, failureCallback: ( err
    * @param params must be an object.
    */
   buildQuery( params ) {
-    params[ 'module' ] = 'ajax'; // 'module' must be ajax.
-    params[ 'submit' ] = 1; // all submit must send 'submit'=1
+    // params[ 'module' ] = 'ajax'; // 'module' must be ajax.
+    // params[ 'submit' ] = 1; // all submit must send 'submit'=1
     return this.http_build_query( params );
   }
 
