@@ -57,6 +57,11 @@ export class User {
     }
 
 
+
+    /**
+     * 
+     * @attention it will remove 'session-id' from localStorage even if the user failed to log out !!
+     */
     logout( success: (res: USER_LOGIN_REPONSE_DATA) => void, failure?: ( error: string ) => void, complete?: () => void ) {
 
         let req: USER_LOGOUT_REQUEST_DATA = {
@@ -66,12 +71,12 @@ export class User {
         
         
         this.base.post( req,
-            (res) => {
-                this.deleteSessionId( );
-                success( res );
-            },
+            success,
             failure,
-            complete );
+            () => {
+                this.deleteSessionId( );
+                if ( complete ) complete();
+            } );
 
 
     }
@@ -88,7 +93,12 @@ export class User {
     deleteSessionId() {
         localStorage.removeItem( KEY_SESSION_ID );
     }
+    
     isLogin() : boolean {
+        return this.logged;
+    }
+
+    get logged() : boolean {
         if ( this.getSessionId() ) return true;
         else return false;
     }
