@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Base } from './base';
 import {
-        USER_LOGIN_REQUEST_DATA, USER_LOGIN_REPONSE_DATA,
-        USER_LOGOUT_REQUEST_DATA,
-        USER_REGISTER_REQUEST_DATA,
-        USER_REGISTER_RESPONSE_DATA
-    } from './interface';
+    USER_LOGIN_REQUEST_DATA, USER_LOGIN_REPONSE_DATA,
+    USER_LOGOUT_REQUEST_DATA,
+    USER_REGISTER_REQUEST_DATA,
+    USER_REGISTER_RESPONSE_DATA, USER_UPDATE_REQUEST_DATA, USER_UPDATE_RESPONSE_DATA
+} from './interface';
 import { KEY_SESSION_ID } from './defines';
 @Injectable()
 export class User {
@@ -128,7 +128,7 @@ export class User {
     }
 
 
-    update( req: USER_REGISTER_REQUEST_DATA, success: ( res: USER_REGISTER_RESPONSE_DATA) => void, failure: ( error: string ) => void, complete: () => void ) {
+    update( req: USER_UPDATE_REQUEST_DATA, success: ( res: USER_UPDATE_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
         req.mc = 'user.update';
         req.session_id = this.getSessionId();
 
