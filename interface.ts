@@ -34,6 +34,17 @@ export interface USER_FIELDS {
 }
 
 
+/**
+ * 'FORUM DATA' table
+ */
+
+export interface FORUM_DATA_FIELDS {
+    user_idx: number;
+    title: string;
+    content: string;
+}
+
+
 export interface USER_SESSION_ID_RESPONSE extends RESPONSE {
     data: {
         session_id: string;
@@ -77,3 +88,8 @@ export interface USER_UPDATE_REQUEST_DATA extends REQUEST, USER_FIELDS {
     meta?: any;
 };
 export type USER_UPDATE_RESPONSE_DATA = USER_SESSION_ID_RESPONSE;
+
+
+////FORUM////
+export interface FORUM_DATA_REQUEST_DATA extends REQUEST, FORUM_DATA_FIELDS {};
+export interface FORUM_DATA_RESPONSE_DATA extends FORUM_DATA_FIELDS {};
