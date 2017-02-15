@@ -91,7 +91,10 @@ export class User {
         if ( this.getSessionId() ) return true;
         else return false;
     }
-
+    get logged() : boolean {
+        if ( this.getSessionId() ) return true;
+        else return false;
+    }
 
     getUserData( success: ( res: USER_DATA_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
         if( this.isLogin() == false) return alert( ' not logged in ' );
