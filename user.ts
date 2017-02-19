@@ -70,10 +70,11 @@ export class User {
                 success( res );
             },
             failure,
-            ()=>{
-                complete
-                this.deleteSessionId( );
-            } );
+                ()=>{
+                    if( complete )complete();
+                    this.deleteSessionId( );
+                }
+             );
 
 
     }
@@ -99,23 +100,17 @@ export class User {
         else return false;
     }
 
+    /**
+     * this will get the user's data including meta
+     * 
+     * 
+     */
+
     getUserData( success: ( res: USER_DATA_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
         if( this.isLogin() == false) return alert( ' not logged in ' );
         let req : USER_DATA_REQUEST_DATA = {}
 
         req.mc = 'user.data';
-        req.session_id = this.getSessionId();
-
-        this.base.post( req,
-            (res) => {
-                success( res );
-            },
-            failure,
-            complete );
-    }
-    getUserMetaData( success:( res: USER_META_RESPONSE_DATA ) => void, failure: ( error: string ) => void, complete: () => void ) {
-        let req : USER_META_REQUEST_DATA = {}
-        req.mc = 'user.meta.gets';
         req.session_id = this.getSessionId();
 
         this.base.post( req,
