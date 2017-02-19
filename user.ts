@@ -66,11 +66,14 @@ export class User {
         
         this.base.post( req,
             (res) => {
-                this.deleteSessionId( );
+                
                 success( res );
             },
             failure,
-            complete );
+            ()=>{
+                complete
+                this.deleteSessionId( );
+            } );
 
 
     }
