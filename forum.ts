@@ -7,7 +7,9 @@ import {
     USER_UPDATE_REQUEST_DATA, 
     USER_UPDATE_RESPONSE_DATA,
     FORUM_DATA_UPDATE_REQUEST_DATA,
-    FORUM_DATA_UPDATE_RESPONSE_DATA
+    FORUM_DATA_UPDATE_RESPONSE_DATA,
+    FORUM_DATA_DELETE_REQUEST_DATA,
+    FORUM_DATA_DELETE_RESPONSE_DATA
     
 } from './interface';
 import { KEY_SESSION_ID } from './defines';
@@ -16,12 +18,15 @@ import { KEY_SESSION_ID } from './defines';
 
 export class Forum {
 
-    constructor( private base : Base, private user: User ) {}
+    constructor( private base : Base, private user: User ) {
+        
+    }
 
 
     create( req: FORUM_DATA_REQUEST_DATA, success: (res: FORUM_DATA_RESPONSE_DATA ) => void, failure?: ( error: string ) => void, complete?: () => void ) {
         req.mc = 'forum.data.create';
         req.session_id = this.user.getSessionId();
+        
 
         this.base.post( req, (res) => {
             success( res );
@@ -29,7 +34,7 @@ export class Forum {
     }
 
 
-    edit( req: FORUM_DATA_UPDATE_REQUEST_DATA, success: ( res: FORUM_DATA_RESPONSE_DATA ) => void, failure?:( error: string ) => void, complete?: () => void ) {
+    edit( req: FORUM_DATA_UPDATE_REQUEST_DATA, success: ( res: FORUM_DATA_UPDATE_RESPONSE_DATA ) => void, failure?:( error: string ) => void, complete?: () => void ) {
         req.mc = 'forum.data.edit';
         req.session_id = this.user.getSessionId();
 
@@ -38,8 +43,8 @@ export class Forum {
         }, failure, complete );
     }
 
-    delete( req: FORUM_DATA_UPDATE_REQUEST_DATA, success: ( res: FORUM_DATA_RESPONSE_DATA ) => void, failure?:( error: string ) => void, complete?: () => void ) {
-        req.mc = 'forum.data.edit';
+    delete( req: FORUM_DATA_DELETE_REQUEST_DATA, success: ( res: FORUM_DATA_DELETE_REQUEST_DATA ) => void, failure?:( error: string ) => void, complete?: () => void ) {
+        req.mc = 'forum.data.delete';
         req.session_id = this.user.getSessionId();
 
         this.base.post( req, (res) => {
