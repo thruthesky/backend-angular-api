@@ -13,7 +13,9 @@ import {
     FORUM_DATA_GETS_REQUEST_DATA,
     FORUM_DATA_GETS_RESPONSE_DATA,
     FORUM_CONFIG_REQUEST_DATA,
-    FORUM_CONFIG_RESPONSE_DATA
+    FORUM_CONFIG_RESPONSE_DATA,
+    FORUM_CONFIG_GET_REQUEST_DATA,
+    FORUM_CONFIG_GET_RESPONSE_DATA
 
     
 } from './interface';
@@ -67,6 +69,14 @@ export class Forum {
 
     createForumConfig( req: FORUM_CONFIG_REQUEST_DATA, success: (res: FORUM_CONFIG_RESPONSE_DATA) => void, failure?: ( error: string) =>void, complete?: () => void) {
         req.mc = 'forum.config.create';
+
+        this.base.post( req, (res) => {
+            success( res );
+        }, failure, complete );
+    }
+
+    getForumConfig( req: FORUM_CONFIG_GET_REQUEST_DATA, success: (res: FORUM_CONFIG_GET_RESPONSE_DATA) => void, failure?:( error: string)=> void, complete?: ()=> void ){
+        req.mc = 'forum.config.getconfig';
 
         this.base.post( req, (res) => {
             success( res );
