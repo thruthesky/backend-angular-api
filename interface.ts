@@ -50,6 +50,16 @@ export interface FORUM_DATA_FIELDS {
     content: string;
 }
 
+/**
+ * 'FORUM CONFIG' table
+ */
+
+
+interface FORUM_CONFIG_FIELDS {
+    id: string;
+    name: string;
+    description: string;
+}
 
 export interface USER_SESSION_ID_RESPONSE extends RESPONSE {
     data: {
@@ -97,7 +107,7 @@ export type USER_UPDATE_RESPONSE_DATA = USER_SESSION_ID_RESPONSE;
 
 
 ////FORUM////
-export interface FORUM_DATA_REQUEST_DATA extends REQUEST, FORUM_DATA_FIELDS {};
+export interface FORUM_DATA_REQUEST_DATA extends REQUEST, FORUM_DATA_FIELDS, FORUM_CONFIG_IDX {};
 export interface FORUM_DATA_RESPONSE_DATA extends RESPONSE, FORUM_DATA_FIELDS {};
 
 export interface FORUM_DATA_UPDATE_REQUEST_DATA extends REQUEST, FORUM_DATA_FIELDS, FORUM_DATA_IDX {};
@@ -107,4 +117,7 @@ export interface FORUM_DATA_DELETE_REQUEST_DATA extends REQUEST, FORUM_DATA_IDX 
 export interface FORUM_DATA_DELETE_RESPONSE_DATA extends RESPONSE, FORUM_DATA_IDX {};
 
 export interface FORUM_DATA_GETS_REQUEST_DATA extends REQUEST, FORUM_CONFIG_IDX {};
-export interface FORUm_DATA_GETS_RESPONSE_DATA extends RESPONSE, FORUM_DATA_FIELDS {};
+export interface FORUM_DATA_GETS_RESPONSE_DATA extends RESPONSE, FORUM_DATA_FIELDS {};
+
+export interface FORUM_CONFIG_REQUEST_DATA extends REQUEST, FORUM_CONFIG_FIELDS {};
+export interface FORUM_CONFIG_RESPONSE_DATA extends RESPONSE, FORUM_CONFIG_FIELDS {};
