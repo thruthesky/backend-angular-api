@@ -68,6 +68,11 @@ export interface USER_SESSION_ID_RESPONSE extends RESPONSE {
 }
 
 
+export interface ADMIN_USER_FIELD {
+    user_idx: number;
+    id: string;
+}
+
 
 /**
  *
@@ -124,3 +129,6 @@ export interface FORUM_CONFIG_RESPONSE_DATA extends RESPONSE, FORUM_CONFIG_FIELD
 
 export interface FORUM_CONFIG_GET_REQUEST_DATA extends REQUEST, FORUM_CONFIG_IDX {};
 export interface FORUM_CONFIG_GET_RESPONSE_DATA extends RESPONSE, FORUM_CONFIG_FIELDS {};
+
+///ADMIN///
+export interface ADMIN_USERS_LIST_REQUEST_DATA extends REQUEST , ADMIN_USER_FIELD{}

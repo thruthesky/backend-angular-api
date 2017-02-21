@@ -111,6 +111,7 @@ export class User {
         let req : USER_DATA_REQUEST_DATA = {}
 
         req.mc = 'user.data';
+        req['idx'] = 1;
         req.session_id = this.getSessionId();
 
         this.base.post( req,
