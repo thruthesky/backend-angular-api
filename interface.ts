@@ -42,10 +42,10 @@ interface FORUM_DATA_IDX {
 }
 
 interface FORUM_CONFIG_IDX{
-    config_idx: number;
+    idx_config: number;
 }
 export interface FORUM_DATA_FIELDS {
-    user_idx: number;
+    idx_user: number;
     title: string;
     content: string;
 }
@@ -59,6 +59,10 @@ interface FORUM_CONFIG_FIELDS {
     id: string;
     name: string;
     description: string;
+    level_list: number;
+    level_view: number;
+    level_write: number;
+    level_comment: number;
 }
 
 export interface USER_SESSION_ID_RESPONSE extends RESPONSE {
@@ -105,6 +109,15 @@ export interface USER_UPDATE_REQUEST_DATA extends REQUEST, USER_FIELDS {
 };
 export type USER_UPDATE_RESPONSE_DATA = USER_SESSION_ID_RESPONSE;
 
+export interface ADMIN_USER_SEARCH_REQUEST_DATA extends REQUEST {
+    cond: number;
+    page: number;
+    limit: number;
+}
+
+export interface ADMIN_USER_SEARCH_RESPONSE_DATA extends RESPONSE, USER_DATA {
+
+}
 
 ////FORUM////
 export interface FORUM_DATA_REQUEST_DATA extends REQUEST, FORUM_DATA_FIELDS, FORUM_CONFIG_IDX {};
